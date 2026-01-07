@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Zsh & Terminal Cheatsheet (macOS/Linux)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* Slate Dark */
+            --accent-color: #e67e22;  /* Laranja para destaque de teclas */
+            --code-bg: #f3f4f6;
+            --text-color: #1f2937;
+            --comment-color: #6b7280;
+            --border-color: #d1d5db;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 7.5pt; /* Ajuste fino para caber descrições extras */
+            line-height: 1.2;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0.5cm;
+            background-color: #fff;
+        }
+
+        /* Layout 3 Colunas para máxima densidade */
+        .container {
+            column-count: 3;
+            column-gap: 0.4cm;
+            width: 100%;
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+            column-span: all;
+        }
+
+        h1 {
+            font-size: 13pt;
+            margin: 0;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .meta {
+            font-size: 7pt;
+            color: var(--comment-color);
+        }
+
+        section {
+            break-inside: avoid;
+            margin-bottom: 6px;
+            border-bottom: 1px dotted var(--border-color);
+            padding-bottom: 4px;
+        }
+
+        h2 {
+            font-size: 8.5pt;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            margin: 0 0 3px 0;
+            background-color: #eee;
+            padding: 1px 3px;
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 8pt;
+            font-weight: 700;
+            margin: 3px 0 1px 0;
+            color: #444;
+            border-left: 2px solid var(--accent-color);
+            padding-left: 4px;
+        }
+
+        /* Comandos */
+        .cmd-row {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4px;
+            margin-bottom: 2px;
+            align-items: baseline;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 7pt;
+            background-color: var(--code-bg);
+            padding: 0 2px;
+            border-radius: 2px;
+            font-weight: 700;
+            color: #000;
+            white-space: nowrap;
+        }
+
+        .desc {
+            font-size: 7pt;
+            color: #333;
+        }
+
+        /* Atalhos de Teclado */
+        .key-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1px;
+            border-bottom: 1px solid #f9f9f9;
+        }
+        
+        kbd {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 7pt;
+        }
+
+        /* Grid de Flags Otimizado */
+        .flag-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 colunas com descrição */
+            gap: 2px;
+        }
+        .flag-item {
+            font-family: 'Inter', sans-serif;
+            font-size: 6.5pt;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            padding: 1px 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .flag-item b {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-right: 3px;
+        }
+        .flag-item span {
+            color: #555;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Long Flags Lista */
+        .long-flag-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 6.5pt;
+            border-bottom: 1px solid #f5f5f5;
+            margin-bottom: 1px;
+        }
+        .long-flag-row code {
+            background: none;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        @page {
+            size: A4 portrait;
+            margin: 0.5cm;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Zsh & Terminal Cheatsheet (macOS)</h1>
+        <div class="meta">Do Básico ao Avançado (80/20) • Shortcuts • Flags Reference</div>
+    </header>
+
+    <div class="container">
+
+        <!-- 1. FUNDAMENTOS -->
+        <section>
+            <h2>1. Conceitos Fundamentais</h2>
+            <div class="cmd-row">
+                <code>/</code> <span class="desc">Raiz do sistema</span>
+            </div>
+            <div class="cmd-row">
+                <code>~</code> <span class="desc">Home ($HOME)</span>
+            </div>
+            <div class="cmd-row">
+                <code>.</code> <span class="desc">Diretório atual</span>
+            </div>
+            <div style="font-size: 7pt; color: #666; font-style: italic; margin-top:1px;">
+                ! Case Sensitive: 'File' ≠ 'file'
+            </div>
+        </section>
+
+        <!-- 2. NAVEGAÇÃO -->
+        <section>
+            <h2>2. Navegação & Arquivos</h2>
+            <div class="cmd-row">
+                <code>ls -l</code> <span class="desc">Lista detalhada</span>
+            </div>
+            <div class="cmd-row">
+                <code>cd [dir]</code> <span class="desc">Mudar diretório</span>
+            </div>
+            <div class="cmd-row">
+                <code>pwd</code> <span class="desc">Caminho atual</span>
+            </div>
+            <div class="cmd-row">
+                <code>mv A B</code> <span class="desc">Mover/Renomear</span>
+            </div>
+            <div class="cmd-row">
+                <code>cp A B</code> <span class="desc">Copiar A para B</span>
+            </div>
+            <div class="cmd-row">
+                <code>rm [arq]</code> <span class="desc">Apagar (sem volta)</span>
+            </div>
+            <div class="cmd-row">
+                <code>mkdir [d]</code> <span class="desc">Criar pasta</span>
+            </div>
+            <div class="cmd-row">
+                <code>clear</code> <span class="desc">Limpar tela</span>
+            </div>
+        </section>
+
+        <!-- 3. LEITURA & BUSCA -->
+        <section>
+            <h2>3. Leitura & Texto</h2>
+            <div class="cmd-row">
+                <code>cat [arq]</code> <span class="desc">Ler tudo</span>
+            </div>
+            <div class="cmd-row">
+                <code>less [arq]</code> <span class="desc">Ler paginado ('q' sair)</span>
+            </div>
+            <div class="cmd-row">
+                <code>grep "txt"</code> <span class="desc">Buscar texto em arq</span>
+            </div>
+            <div class="cmd-row">
+                <code>wc -l</code> <span class="desc">Contar linhas</span>
+            </div>
+        </section>
+
+        <!-- 4. SISTEMA -->
+        <section>
+            <h2>4. Sistema & Processos</h2>
+            <div class="cmd-row">
+                <code>top</code> <span class="desc">Monitor CPU/RAM ('q')</span>
+            </div>
+            <div class="cmd-row">
+                <code>df -h</code> <span class="desc">Espaço em disco</span>
+            </div>
+            <div class="cmd-row">
+                <code>killall [x]</code> <span class="desc">Matar programa</span>
+            </div>
+            <div class="cmd-row">
+                <code>last -1</code> <span class="desc">Último login</span>
+            </div>
+            <div class="cmd-row">
+                <code>date / cal</code> <span class="desc">Data / Calendário</span>
+            </div>
+        </section>
+
+        <!-- 5. REDE (macOS) -->
+        <section>
+            <h2>5. Rede & Conectividade</h2>
+            <div class="cmd-row">
+                <code>curl -O [url]</code> <span class="desc">Baixar arquivo</span>
+            </div>
+            <div class="cmd-row">
+                <code>ipconfig getifaddr en0</code> <span class="desc">IP Local</span>
+            </div>
+            <div class="cmd-row">
+                <code>whois [site]</code> <span class="desc">Info domínio</span>
+            </div>
+            <div class="cmd-row">
+                <code>rsync -aE</code> <span class="desc">Sincronizar pastas</span>
+            </div>
+        </section>
+
+        <!-- 6. AVANÇADO -->
+        <section>
+            <h2>6. Avançado & Pipes</h2>
+            <div class="cmd-row">
+                <code>|</code> <span class="desc">Pipe (Saída vira entrada)</span>
+            </div>
+            <div class="cmd-row">
+                <code>></code> <span class="desc">Redirecionar p/ arq</span>
+            </div>
+            <div class="cmd-row">
+                <code>*</code> <span class="desc">Curinga (Todos arqs)</span>
+            </div>
+            <div class="cmd-row">
+                <code>sudo [cmd]</code> <span class="desc">Como Admin (Root)</span>
+            </div>
+            <div class="cmd-row">
+                <code>man [cmd]</code> <span class="desc">Manual de ajuda</span>
+            </div>
+        </section>
+
+        <!-- 7. ZSH SHORTCUTS -->
+        <section>
+            <h2>7. Atalhos Zsh (Edição)</h2>
+            
+            <h3>Controle</h3>
+            <div class="key-row"><kbd>Ctrl + C</kbd> <span class="desc">Interromper</span></div>
+            <div class="key-row"><kbd>Ctrl + D</kbd> <span class="desc">Sair (EOF)</span></div>
+            <div class="key-row"><kbd>Ctrl + L</kbd> <span class="desc">Limpar tela</span></div>
+            <div class="key-row"><kbd>Ctrl + Z</kbd> <span class="desc">Suspender</span></div>
+            
+            <h3>Navegação (Linha)</h3>
+            <div class="key-row"><kbd>Ctrl + A</kbd> <span class="desc">Início da linha</span></div>
+            <div class="key-row"><kbd>Ctrl + E</kbd> <span class="desc">Fim da linha</span></div>
+            <div class="key-row"><kbd>Alt + B</kbd> <span class="desc">Volta palavra</span></div>
+            <div class="key-row"><kbd>Alt + F</kbd> <span class="desc">Avança palavra</span></div>
+
+            <h3>Edição</h3>
+            <div class="key-row"><kbd>Ctrl + U</kbd> <span class="desc">Apaga linha inteira</span></div>
+            <div class="key-row"><kbd>Ctrl + K</kbd> <span class="desc">Apaga cursor → fim</span></div>
+            <div class="key-row"><kbd>Ctrl + W</kbd> <span class="desc">Apaga palavra ant.</span></div>
+            <div class="key-row"><kbd>Alt + D</kbd> <span class="desc">Apaga palavra próx.</span></div>
+            <div class="key-row"><kbd>Ctrl + Y</kbd> <span class="desc">Cola (Yank)</span></div>
+
+            <h3>Histórico</h3>
+            <div class="key-row"><kbd>Ctrl + R</kbd> <span class="desc">Busca reversa</span></div>
+            <div class="key-row"><kbd>!!</kbd> <span class="desc">Repete anterior</span></div>
+            <div class="key-row"><kbd>!str</kbd> <span class="desc">Último c/ 'str'</span></div>
+        </section>
+
+        <!-- 8. NANO -->
+        <section>
+            <h2>8. Nano Editor</h2>
+            <div class="key-row"><kbd>Ctrl + O</kbd> <span class="desc">Salvar</span></div>
+            <div class="key-row"><kbd>Ctrl + X</kbd> <span class="desc">Sair</span></div>
+            <div class="key-row"><kbd>Ctrl + W</kbd> <span class="desc">Buscar</span></div>
+            <div class="key-row"><kbd>Ctrl + ^</kbd> <span class="desc">Selec. Texto</span></div>
+            <div class="key-row"><kbd>Alt + ^</kbd> <span class="desc">Copiar</span></div>
+            <div class="key-row"><kbd>Ctrl + U</kbd> <span class="desc">Colar</span></div>
+        </section>
+
+        <!-- 9. FLAGS REFERENCE -->
+        <section>
+            <h2>9. Flags Reference (Comuns)</h2>
+            
+            <h3>Short Flags</h3>
+            <div class="flag-grid">
+                <div class="flag-item"><b>-h</b><span>Human/Help</span></div>
+                <div class="flag-item"><b>-v</b><span>Verbose</span></div>
+                <div class="flag-item"><b>-V</b><span>Version</span></div>
+                
+                <div class="flag-item"><b>-a</b><span>All (Hidden)</span></div>
+                <div class="flag-item"><b>-A</b><span>Almost All</span></div>
+                <div class="flag-item"><b>-l</b><span>Long List</span></div>
+                
+                <div class="flag-item"><b>-R</b><span>Recursive</span></div>
+                <div class="flag-item"><b>-r</b><span>Reverse</span></div>
+                <div class="flag-item"><b>-i</b><span>Interactive</span></div>
+                
+                <div class="flag-item"><b>-f</b><span>Force</span></div>
+                <div class="flag-item"><b>-n</b><span>Num/Line</span></div>
+                <div class="flag-item"><b>-p</b><span>Parents</span></div>
+                
+                <div class="flag-item"><b>-o</b><span>Output</span></div>
+                <div class="flag-item"><b>-q</b><span>Quiet</span></div>
+                <div class="flag-item"><b>-s</b><span>Size/Silent</span></div>
+                
+                <div class="flag-item"><b>-t</b><span>Time Sort</span></div>
+                <div class="flag-item"><b>-u</b><span>User/Upd</span></div>
+                <div class="flag-item"><b>-x</b><span>Exclude</span></div>
+                
+                <div class="flag-item"><b>-z</b><span>Gzip</span></div>
+                <div class="flag-item"><b>-c</b><span>Count/Create</span></div>
+                <div class="flag-item"><b>-d</b><span>Directory</span></div>
+                
+                <div class="flag-item"><b>-e</b><span>Exec/Regex</span></div>
+                <div class="flag-item"><b>-k</b><span>Kilo/Keep</span></div>
+                <div class="flag-item"><b>-m</b><span>Mode/Msg</span></div>
+            </div>
+
+            <h3>Long Flags</h3>
+            <div class="long-flag-row"><code>--help</code> <span>Exibe ajuda</span></div>
+            <div class="long-flag-row"><code>--version</code> <span>Versão do app</span></div>
+            <div class="long-flag-row"><code>--recursive</code> <span>Pastas/Subpastas</span></div>
+            <div class="long-flag-row"><code>--force</code> <span>Forçar ação</span></div>
+            <div class="long-flag-row"><code>--verbose</code> <span>Saída detalhada</span></div>
+            <div class="long-flag-row"><code>--dry-run</code> <span>Simular (Teste)</span></div>
+            <div class="long-flag-row"><code>--exclude</code> <span>Excluir padrão</span></div>
+            <div class="long-flag-row"><code>--color</code> <span>Saída colorida</span></div>
+            <div class="long-flag-row"><code>--quiet</code> <span>Sem saída</span></div>
+            <div class="long-flag-row"><code>--sort</code> <span>Ordenar</span></div>
+
+            <h3>Specials</h3>
+            <div class="flag-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="flag-item"><b>--</b><span>Fim das flags</span></div>
+                <div class="flag-item"><b>-</b><span>Stdin/Stdout</span></div>
+            </div>
+        </section>
+
+        <!-- 10. CLIPBOARD & ABAS -->
+        <section>
+            <h2>10. macOS Extras</h2>
+            <div class="key-row"><kbd>Cmd + C</kbd> <span class="desc">Copiar</span></div>
+            <div class="key-row"><kbd>Cmd + V</kbd> <span class="desc">Colar</span></div>
+            <div class="key-row"><kbd>Cmd + K</kbd> <span class="desc">Limpar buffer</span></div>
+            <div class="key-row"><kbd>Cmd + T</kbd> <span class="desc">Nova aba</span></div>
+        </section>
+
+        <!-- 11. PROCESSOS (JOBS) -->
+        <section>
+            <h2>11. Jobs</h2>
+            <div class="cmd-row"><code>bg</code> <span class="desc">Mandar p/ background</span></div>
+            <div class="cmd-row"><code>fg</code> <span class="desc">Trazer p/ foreground</span></div>
+            <div class="cmd-row"><code>jobs</code> <span class="desc">Listar jobs</span></div>
+            <div class="cmd-row"><code>kill %1</code> <span class="desc">Matar job 1</span></div>
+        </section>
+
+    </div>
+
+</body>
+</html>
