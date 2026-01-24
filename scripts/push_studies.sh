@@ -2,5 +2,5 @@
 echo "Starting studies backup..."
 git add .
 git commit -m "Update: $(date)"
-git push origin main
+git push origin HEAD
 echo "All set and pushed!"
