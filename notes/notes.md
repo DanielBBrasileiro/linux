@@ -269,3 +269,43 @@ Let's create a simple script to automate what you did on GitHub.
 | **`sudo`** | Used within scripts that require administrator permission. |
 | **`exit`** | Terminates the script execution. |
 
+## 7. Understanding Flags: Context Matters
+
+Yes, Daniel, flags **completely change their function** depending on the command. There is no mandatory universal standard in Linux/Unix; each tool developer decides what the letters mean for that specific program.
+
+Although there are **conventions** (letters that are often used for similar things), trusting that a flag does the same thing in different commands can be dangerous.
+
+See the example of the `-f` flag you mentioned:
+
+### 7.1 The Chameleon: The `-f` Flag in Different Contexts
+
+| Command | What does `-f` do? | Meaning |
+| --- | --- | --- |
+| `tail -f` | **Follow** | Keeps the file open to read new lines in real-time. |
+| `rm -f` | **Force** | Forces deletion without asking for confirmation (ignores non-existent files). |
+| `cp -f` | **Force** | Overwrites destination files without asking the user. |
+| `grep -f [file]` | **File** | Indicates that `grep` should read search patterns from inside a file. |
+| `ssh -f` | **Foreground/Background** | Requests SSH to run in the background immediately after authentication. |
+
+### 7.2 Other "Confusing" Flags
+
+Another classic example is the `-v` flag:
+
+*   In `cp` or `mv`, `-v` stands for **Verbose** (shows what is being done).
+*   In `grep`, `-v` stands for **Invert Match** (shows what *does not* match the pattern).
+*   In many other commands, `-v` or `-V` shows the **Version** of the program.
+
+### 7.3 Why does this happen?
+
+The Linux/macOS ecosystem was built over decades by thousands of different people. Each utility (like `ls`, `grep`, or `rm`) is an independent program.
+
+### 7.4 Survival "Laws" in the Terminal
+
+Since you are in the **100 Days of Code** challenge, here are the two golden rules to avoid confusion:
+
+1.  **Always check the Manual (`man`):** Before using a new flag, type `man [command]` in your macOS terminal. Use the `/` key to search for a letter inside the manual.
+    *   Example: `man rm` (search for `-f`).
+
+2.  **The `--help` standard:** Most modern commands accept `--help` (two dashes), which brings a quick summary of all available flags.
+
+> **Productivity Tip:** In Zsh (your shell on macOS), you can type the command, add a space, put a `-` and press **Tab**. Zsh usually shows a list of available flags and what each one does right there on the command line!
