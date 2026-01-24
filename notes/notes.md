@@ -309,3 +309,59 @@ Since you are in the **100 Days of Code** challenge, here are the two golden rul
 2.  **The `--help` standard:** Most modern commands accept `--help` (two dashes), which brings a quick summary of all available flags.
 
 > **Productivity Tip:** In Zsh (your shell on macOS), you can type the command, add a space, put a `-` and press **Tab**. Zsh usually shows a list of available flags and what each one does right there on the command line!
+
+## 8. Mastering Permissions (chmod & chown)
+
+Linux was designed as a multi-user system, meaning security is based on who can **Read (r)**, **Write (w)**, and **Execute (x)** a file.
+
+### 8.1 The "rwx" Triad
+
+When you run `ls -l`, the first column shows something like `-rwxr-xr--`. This is divided into three groups of 3 characters:
+
+1.  **User (u):** The owner of the file (You).
+2.  **Group (g):** The group the user belongs to (Staff, Admin, etc.).
+3.  **Others (o):** Everyone else (Hackers, guests, other processes).
+
+### 8.2 Changing Permissions (`chmod`)
+
+You can change permissions using **Symbols** or **Numbers**.
+
+#### Symbolic Mode
+*   `chmod +x script.sh`: Adds (+) e**x**ecution permission for everyone.
+*   `chmod u-w file.txt`: Removes (-) **w**rite permission for the **u**ser only.
+*   `chmod go=r data.csv`: Forces **g**roup and **o**thers to have exactly (=) only **r**ead permission.
+
+#### Numeric Mode (Octal) - The Professional Way
+Each permission has a value:
+*   **r (Read) = 4**
+*   **w (Write) = 2**
+*   **x (Execute) = 1**
+
+To set permissions, you sum the numbers for each group.
+
+| Sum | Permission | Common Use |
+| :--- | :--- | :--- |
+| **7** (4+2+1) | `rwx` (Read, Write, Exec) | User (Full Control) |
+| **6** (4+2) | `rw-` (Read, Write) | Standard Files (Docs, Images) |
+| **5** (4+1) | `r-x` (Read, Exec) | Programs/Scripts (Run but don't edit) |
+| **4** (4) | `r--` (Read Only) | Configuration files (Safety) |
+| **0** | `---` (No Access) | Restricted secrets |
+
+**Common Examples:**
+*   **777:** Everyone can do everything (Dangerous! Avoid).
+*   **755:** User writes; everyone else reads and runs (Standard for scripts/websites).
+*   **600:** Only the user can read/write (Standard for SSH keys and passwords).
+
+```zsh
+chmod 755 myscript.sh
+```
+
+### 8.3 Changing Ownership (`chown`)
+
+Sometimes you can't edit a file because it belongs to `root` or another user.
+
+*   **Syntax:** `chown [user]:[group] [file]`
+*   **Example:** Make me the owner of this folder.
+    ```zsh
+    sudo chown daniel:staff my_folder/
+    ```
