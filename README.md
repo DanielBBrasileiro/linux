@@ -10,7 +10,9 @@ This repository is organized to separate concepts from practical tools:
   - `notes.md`: The main guide covering commands, permissions, and productivity tips.
   - `flags.md`: Deep dive into specific command flags.
   - `linux_cheatsheet.html`: Quick reference guide.
-  - `CHALLENGE_1.md`: Real-world scenarios to test knowledge.
+  - `CHALLENGE_1.md`: Real-world scenarios to test knowledge (Navigation).
+  - `CHALLENGE_2.md`: Permissions & Safety scenarios.
+  - `CHALLENGE_3.md`: Data filtering with grep and pipes.
 - **/scripts**: Automation scripts.
   - `push_studies.sh`: A script to automate git add/commit/push for this repo.
 
