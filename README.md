@@ -13,6 +13,7 @@ This repository is organized to separate concepts from practical tools:
   - `CHALLENGE_1.md`: Real-world scenarios to test knowledge (Navigation).
   - `CHALLENGE_2.md`: Permissions & Safety scenarios.
   - `CHALLENGE_3.md`: Data filtering with grep and pipes.
+  - `CHALLENGE_4.md`: Introduction to Shell Scripting automation.
 - **/scripts**: Automation scripts.
   - `push_studies.sh`: A script to automate git add/commit/push for this repo.
 
