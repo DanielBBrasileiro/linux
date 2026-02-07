@@ -365,3 +365,42 @@ Sometimes you can't edit a file because it belongs to `root` or another user.
     ```zsh
     sudo chown daniel:staff my_folder/
     ```
+
+## 9. Process Management (The Task Manager)
+
+Just like "Task Manager" in Windows or "Activity Monitor" in macOS, the terminal lets you control running programs (Process IDs - PIDs).
+
+### 9.1 Viewing Processes
+
+*   **`top`**: The most common way to see real-time usage (CPU/RAM).
+    *   Press **`q`** to exit.
+*   **`ps aux`**: Snapshot of EVERY process running now.
+    *   Usually combined with grep: `ps aux | grep "python"` to find a specific script.
+
+### 9.2 Controlling Jobs (Foreground & Background)
+
+*   **Foreground:** When you run a command (like `nano`), it takes over your terminal. You can't type anything else until it finishes.
+*   **Background:** You can run long tasks "behind the scenes" so you can keep working.
+
+#### The Magic Keys
+*   **`Ctrl + C`**: **Kill** (Cancel) the current process immediately.
+*   **`Ctrl + Z`**: **Suspend** (Pause) the current process and give you back the terminal prompt.
+
+#### Commands to Manage Jobs
+1.  **`jobs`**: Lists paused or background jobs in this terminal session.
+2.  **`bg`**: Sends the paused job to the **Background** (it continues running, but silently).
+3.  **`fg`**: Brings a background job back to the **Foreground** (so you can see/interact with it).
+
+### 9.3 Killing Processes (`kill`)
+
+If a program freezes or you want to stop a background script:
+
+1.  Find its **PID** (Process ID) with `top` or `ps`.
+2.  Run:
+    ```zsh
+    kill 12345
+    ```
+3.  **Force Kill** (The Nuclear Option): If it refuses to close, use `-9`:
+    ```zsh
+    kill -9 12345
+    ```
