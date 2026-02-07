@@ -438,3 +438,33 @@ The terminal is your bridge to the internet. As a Data Pro, you'll arguably use 
     curl -I https://google.com
     ```
     *(Useful to see if a site is returning 200 OK or 404 Not Found).*
+
+## 11. Archives and Compression (The Data Packer)
+
+Data engineering involves moving massive files. You rarely send raw CSVs; you compress them.
+
+### 11.1 The Standard: TAR (Tape Archive)
+
+`tar` is the standard Linux format. It bundles files together, often with gzip compression (`.tar.gz`).
+
+*   **Create (Compress):**
+    ```zsh
+    tar -czf archive_name.tar.gz folder_to_compress/
+    ```
+    *   **c**: Create
+    *   **z**: Gzip compression (makes it smaller)
+    *   **f**: File (defines the name)
+
+*   **Extract (Uncompress):**
+    ```zsh
+    tar -xzf archive_name.tar.gz
+    ```
+    *   **x**: Extract
+
+### 11.2 ZIP (Cross-Platform)
+
+If you are sending files to Windows users, use `zip`.
+
+*   **Compress:** `zip -r data.zip folder/`
+    *   **-r**: Recursive (includes subfolders)
+*   **Extract:** `unzip data.zip`
