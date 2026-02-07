@@ -404,3 +404,37 @@ If a program freezes or you want to stop a background script:
     ```zsh
     kill -9 12345
     ```
+
+## 10. Networking & Connectivity
+
+The terminal is your bridge to the internet. As a Data Pro, you'll arguably use these commands more than anything else to fetch datasets.
+
+### 10.1 Access & Identity
+
+*   **`ping [host]`**: Checks if a server is "alive".
+    *   `ping google.com`: Sends small packets. If you get a reply, you have internet.
+    *   **Stop it:** Press `Ctrl + C`.
+*   **`ifconfig`** (macOS) / **`ip a`** (Linux): Shows your network interfaces.
+    *   Look for `en0` or `eth0` to find your **Local IP**.
+
+### 10.2 Downloading Data (`curl`)
+
+`curl` is the Swiss Army knife of data transfer.
+
+*   **Download a File:**
+    ```zsh
+    curl -O https://example.com/data.csv
+    ```
+    *(The `-O` flag (capital O) saves the file with its original name).*
+
+*   **Download and Rename:**
+    ```zsh
+    curl -o my_data.csv https://example.com/data.csv
+    ```
+    *(The `-o` flag (lowercase) lets you choose the filename).*
+
+*   **View Header (Debug):**
+    ```zsh
+    curl -I https://google.com
+    ```
+    *(Useful to see if a site is returning 200 OK or 404 Not Found).*
