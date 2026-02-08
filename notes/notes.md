@@ -468,3 +468,34 @@ If you are sending files to Windows users, use `zip`.
 *   **Compress:** `zip -r data.zip folder/`
     *   **-r**: Recursive (includes subfolders)
 *   **Extract:** `unzip data.zip`
+
+## 12. Advanced Text Processing (Data Cleaning)
+
+Often, you need to clean data *before* importing it into Python or SQL.
+
+### 12.1 The Stream Editor (`sed`)
+
+`sed` is perfect for finding and replacing text in a file without opening it.
+
+*   **Syntax:** `sed 's/old/new/g' file.txt`
+    *   **s**: Substitute
+    *   **g**: Global (all occurrences in the line, not just the first)
+
+*   **Example:** Replace all commas with semicolons in a CSV:
+    ```zsh
+    sed 's/,/;/g' data.csv > clean_data.csv
+    ```
+
+### 12.2 The Column Filter (`awk`)
+
+`awk` is a complete programming language, but 90% of the time you use it to print specific columns.
+
+*   **Syntax:** `awk '{print $1}' file.txt`
+    *   **$1**: First column
+    *   **$NF**: Last column
+    *   By default, it assumes columns are separated by spaces. To specify a delimiter (like comma), use `-F`.
+
+*   **Example:** Print only the second column of a CSV (Usernames):
+    ```zsh
+    awk -F ',' '{print $2}' users.csv
+    ```
