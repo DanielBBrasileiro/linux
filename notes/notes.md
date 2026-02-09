@@ -499,3 +499,39 @@ Often, you need to clean data *before* importing it into Python or SQL.
     ```zsh
     awk -F ',' '{print $2}' users.csv
     ```
+
+## 13. Scheduling Automation (Cron)
+
+As a Data Engineer, you don't run scripts manually every morning. You schedule them with **Cron**.
+
+### 13.1 The Cron Table (`crontab`)
+
+Each user has a "Cron Table" where scheduled jobs are listed.
+
+*   **Edit Tasks:** `crontab -e` (Opens the file to add jobs).
+*   **List Tasks:** `crontab -l` (Shows what is currently scheduled).
+
+### 13.2 The Sytnax (Time Fields)
+
+A cron job has 5 time fields followed by the command:
+
+```text
+* * * * *  command_to_run
+| | | | |
+| | | | └── Day of Week (0-6) (Sunday=0)
+| | | └──── Month (1-12)
+| | └────── Day of Month (1-31)
+| └──────── Hour (0-23)
+└────────── Minute (0-59)
+```
+
+### 13.3 Common Examples
+
+*   **Run every day at 8:30 AM:**
+    `30 8 * * * /Users/daniel/scripts/daily_report.sh`
+
+*   **Run every Monday at 5:00 PM:**
+    `0 17 * * 1 /Users/daniel/scripts/weekly_backup.sh`
+
+*   **Run every 15 minutes:**
+    `*/15 * * * * /Users/daniel/scripts/check_server.sh`
