@@ -535,3 +535,36 @@ A cron job has 5 time fields followed by the command:
 
 *   **Run every 15 minutes:**
     `*/15 * * * * /Users/daniel/scripts/check_server.sh`
+
+## 14. Remote Mastery (SSH & SCP)
+
+The final boss of the terminal is working on **other computers** as if they were your own.
+
+### 14.1 Secure Shell (`ssh`)
+
+*   **Connect:** `ssh user@192.168.1.50`
+    *   It will ask for a password.
+    *   Once connected, your terminal **IS** the remote computer's terminal.
+    *   **Exit:** Type `exit` to come back to your Mac/PC.
+
+### 14.2 File Transfer (`scp`)
+
+`scp` (Secure Copy) works exactly like `cp`, but over the network.
+
+*   **Upload (Local -> Remote):**
+    ```zsh
+    scp my_file.csv user@192.168.1.50:/home/user/data/
+    ```
+
+*   **Download (Remote -> Local):**
+    ```zsh
+    scp user@192.168.1.50:/var/log/syslog ./local_logs/
+    ```
+
+### 14.3 keys (No Passwords)
+
+Typing passwords every time is slow and blocks automation. We use **SSH Keys**.
+
+1.  **Generate Key:** `ssh-keygen -t ed25519` (Creates a public/private key pair on your machine).
+2.  **Send Key:** `ssh-copy-id user@192.168.1.50` (Copies your **public** key to the server).
+3.  **Connect:** `ssh user@192.168.1.50` (Now logs in instantly without password!).
