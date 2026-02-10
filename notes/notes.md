@@ -568,3 +568,32 @@ Typing passwords every time is slow and blocks automation. We use **SSH Keys**.
 1.  **Generate Key:** `ssh-keygen -t ed25519` (Creates a public/private key pair on your machine).
 2.  **Send Key:** `ssh-copy-id user@192.168.1.50` (Copies your **public** key to the server).
 3.  **Connect:** `ssh user@192.168.1.50` (Now logs in instantly without password!).
+
+## 15. Environment Variables & The PATH
+
+Your terminal has a "memory" where it stores settings. These are called **Environment Variables**.
+
+### 15.1 Managing Variables
+
+*   **View a Variable:** `echo $MyVar` (The `$` accesses the value).
+*   **Set a Temporary Variable:**
+    ```zsh
+    export DB_HOST="192.168.1.50"
+    ```
+    *(This variable disappears when you close the terminal window).*
+
+*   **List All Variables:** `env` or `printenv`.
+
+### 15.2 The All-Powerful PATH
+
+Have you wondered why you can type `ls` from anywhere, but to run your own script you need `./script.sh`?
+
+It's because of the **$PATH** variable. It is a list of folders where the terminal looks for commands.
+
+*   **Check your PATH:**
+    ```zsh
+    echo $PATH
+    ```
+    *(You will see a list separated by colons, e.g., `/usr/bin:/bin:/usr/sbin`).*
+
+*   **Adding to PATH:** If you want your scripts to run from anywhere, you add their folder to the PATH in your config file (`.zshrc` or `.bashrc`).
