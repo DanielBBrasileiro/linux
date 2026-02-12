@@ -597,3 +597,20 @@ It's because of the **$PATH** variable. It is a list of folders where the termin
     *(You will see a list separated by colons, e.g., `/usr/bin:/bin:/usr/sbin`).*
 
 *   **Adding to PATH:** If you want your scripts to run from anywhere, you add their folder to the PATH in your config file (`.zshrc` or `.bashrc`).
+
+## 16. Package Management (The App Store)
+
+Linux/macOS doesn't need installers downloaded from websites. We use **Package Managers**.
+
+### 16.1 macOS: Homebrew (`brew`)
+
+*   **Install software:** `brew install python`
+*   **Update everything:** `brew upgrade`
+*   **Search:** `brew search postgresql`
+*   **Uninstall:** `brew uninstall wget`
+
+### 16.2 Linux: APT (Debian/Ubuntu)
+
+*   **Update list:** `sudo apt update` (Always run this first!)
+*   **Install:** `sudo apt install python3`
+*   **Remove:** `sudo apt remove nano`
