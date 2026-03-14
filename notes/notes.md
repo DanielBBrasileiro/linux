@@ -684,3 +684,5 @@ Here is a quick reference to the challenges available in this repository:
 *   **Day 21:** The System Inspector (Disk & Memory Audits `du`, `df`)
 *   **Day 22:** The Transporter (Network Transfer `rsync`, `scp`)
 *   **Day 23:** The Gatekeeper (Advanced Users & Permissions)
+*   **Day 24:** The Persistent Worker (nohup, tmux)
+*   **Day 25:** The Infrastructure Inspector (systemd, journalctl)
