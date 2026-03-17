@@ -686,3 +686,5 @@ Here is a quick reference to the challenges available in this repository:
 *   **Day 23:** The Gatekeeper (Advanced Users & Permissions)
 *   **Day 24:** The Persistent Worker (nohup, tmux)
 *   **Day 25:** The Infrastructure Inspector (systemd, journalctl)
+*   **Day 26:** The Security Guard (SSH Keys & Config)
+*   **Day 27:** The Cleaner (History & Housekeeping)
